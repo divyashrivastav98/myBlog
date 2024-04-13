@@ -1,0 +1,29 @@
+<%- include("partials/header.ejs") %>
+
+<button><a href="/">Back</a></button>
+
+<% if (locals.blog) { %>
+ <h1><%= blog.title %></h1>
+ <% if (locals.isEdit) { %>
+  <form action=<%= `/update/${blog.id}` %> method="post">
+    <input name="edit-description"value=<%= blog.description %> col="5">
+    <button type="submit">Save</button>
+  </form>
+   
+ <% } else { %>
+    <p><%= blog.description %></p>
+    <button>
+        <a href=<%= `/blog/edit/${blog.id}` %>>
+            Edit
+        </a>
+    </button>
+ <% } %>
+
+ <button>
+    <a href=<%= `/delete/${blog.id}` %>>
+        Delete
+    </a>
+</button>
+<% } %>
+
+<%- include("partials/footer.ejs") %>

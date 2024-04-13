@@ -1,0 +1,27 @@
+<%- include("partials/header.ejs") %>
+
+    <h1>Welcome to MyBlog</h1>
+    <div>
+        <form action="/submit" method="post">
+            <div>
+                <label>Title</label>
+                <input type="text" name="title">
+            </div>
+            <div>
+                <label>Description</label>
+                <textarea name="description"></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <% if (locals.blogs) { %>
+        <ul>
+            <% for( let index = 0; index < blogs.length; index++ ) { %>
+              <li><a href=<%= `blogs/${blogs[index].id}` %>><%= blogs[index].title %></a></li>  
+            <% } %>
+        </ul>
+    <% } else { %>
+        <p>No blogs to display!</p>
+    <% } %>
+
+<%- include("partials/footer.ejs") %>
